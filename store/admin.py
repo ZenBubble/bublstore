@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import WishList, Item, User, Review
+
+admin.site.register(WishList)
+
+admin.site.register(Item)
+
+admin.site.register(User)
+
+admin.site.register(Review)

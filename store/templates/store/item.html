@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{item.name}} - bublstore</title>
+</head>
+<body>
+    {% if item %}
+    <p>Looking at item no. {{item.id}}</p>
+    <p>This is {{item.name}}</p>
+{% else %}
+    <p>Item not found</p>
+{% endif %}
+
+<form action="{% url 'store:review' item.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Leave a review!</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <input name="title" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    </fieldset>
+    <input type="submit" value="review">
+    </form>
+    
+    {% for review in item.review_set.all %}
+    <h1>{{review.title}}</h1>
+    <h2>Review by: {{review.user.name}}</h2>
+    <p>{{review.content}}</p>
+        {% endfor %}
+
+</body>
+</html>
