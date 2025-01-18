@@ -1,7 +1,10 @@
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
+from django.urls import reverse
 
 from .models import *
+from .forms import *
 
 
 class IndexView(generic.ListView):
@@ -12,9 +15,20 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Item.objects.order_by("name")[:5]
 
-class DetailView(generic.DetailView):
-    model = Item
-    template_name = "store/item.html"
+def detail(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("store:detail", args=(item.id,)))
+    else:
+        form = ReviewForm()
+    context = {
+        "item": item,
+        "form": form
+    }
+    return render(request, "store/item.html", context) # request, template uri, context
 
 # def buy(request, item_id): # example custom request for a new page
 #     item = get_object_or_404(Item, pk=item_id)
@@ -22,10 +36,3 @@ class DetailView(generic.DetailView):
 #         "item": item,
 #     }
 #     return render(request, "store/buy.html", context) # request, template uri, context
-
-def review(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
-    context = {
-        "item": item,
-    }
-    return render(request, "store/item.html", context)

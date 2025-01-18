@@ -13,14 +13,12 @@
     <p>Item not found</p>
 {% endif %}
 
-<form action="{% url 'store:review' item.id %}" method="post">
+<form method="post">
+    <table>
+        {{form}}
+    </table>
     {% csrf_token %}
-    <fieldset>
-        <legend><h1>Leave a review!</h1></legend>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <input name="title" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    </fieldset>
-    <input type="submit" value="review">
+    <input type="submit" value="Submit">
     </form>
     
     {% for review in item.review_set.all %}
