@@ -6,6 +6,7 @@ Full stack project made for a mock website offering various services. Self-hoste
 - (WIP) Backend server for saving customer account information + cart/wishlist + comments, hosted from personal home server. This is the main focus of this project, as I want to explore more of the backend stuff as well as information encryption.
 - (WIP) Django code base. This is meant for learning more of the python syntax as well as using a new framework.
 - (WIP) Automated tests. This is for learning CI/CD and program testing.
+- (WIP) Bug reports that save a snapshot of the html at time of bug.
 
 ## Installation/development
 "pip freeze > requirements.txt" to save dependencies

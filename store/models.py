@@ -19,6 +19,8 @@ class Item(models.Model):
     
     def __str__(self):
         return self.name
+    def num_items(self):
+        return len(Review)
     
 class User(models.Model):
     name = models.CharField(max_length=30)
