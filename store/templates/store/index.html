@@ -1,6 +1,4 @@
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'store/styles.css' %}">
+{% load static tailwind_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    {% tailwind_css %}
 </head>
 <body>
     {% if item_list %}
@@ -19,5 +18,6 @@
 {% else %}
     <p>No items are available.</p>
 {% endif %}
+<p class="text-blue-600/25 dark:text-sky-400/25">The quick brown fox...</p>
 </body>
 </html> 
