@@ -7,25 +7,25 @@
 </head>
 <body>
     {% if item %}
-    <p>Looking at item no. {{item.id}}</p>
-    <p>This is {{item.name}}</p>
-{% else %}
-    <p>Item not found</p>
-{% endif %}
+        <p>Looking at item no. {{item.id}}</p>
+        <p>This is {{item.name}}</p>
+    {% else %}
+        <p>Item not found</p>
+    {% endif %}
 
-<form method="post">
+<form method="post" action={{item.id}}>
     <table>
         {{form}}
     </table>
     {% csrf_token %}
-    <input type="submit" value="Submit">
+    <button name="submit">Submit</button>
     </form>
     
     {% for review in item.review_set.all %}
     <h1>{{review.title}}</h1>
-    <h2>Review by: {{review.user.name}}</h2>
+    <!-- <h2>Review by: {{review.user.name}}</h2> -->
     <p>{{review.content}}</p>
-        {% endfor %}
+    {% endfor %}
 
 </body>
 </html>

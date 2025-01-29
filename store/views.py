@@ -17,16 +17,16 @@ class IndexView(generic.ListView):
 
 def detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
+    form = ReviewForm()
     if request.method == "POST":
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse("store:detail", args=(item.id,)))
-    else:
-        form = ReviewForm()
+        if 'submit' in request.POST:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                form.save(item)
+                return HttpResponseRedirect(reverse("store:detail", args=(item.id,)))
     context = {
         "item": item,
-        "form": form
+        "form": form,
     }
     return render(request, "store/item.html", context) # request, template uri, context
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import WishList, Item, User, Review
+from .models import *
 
 admin.site.register(WishList)
 
@@ -17,5 +17,3 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ["name", "wishlist"]
 
 admin.site.register(Item, ItemAdmin)
-
-admin.site.register(User)

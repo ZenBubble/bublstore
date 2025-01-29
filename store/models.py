@@ -19,17 +19,10 @@ class Item(models.Model):
     
     def __str__(self):
         return self.name
-    def num_items(self):
-        return len(Review)
+    # def num_review(self): #TODO: return number of reviews linked with this object
+    #     return len(Review)
     
-class User(models.Model):
-    name = models.CharField(max_length=30)
-    
-    def __str__(self):
-        return self.name
-
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Item,on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     content = models.CharField(max_length=100)

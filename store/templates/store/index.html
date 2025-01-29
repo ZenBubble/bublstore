@@ -11,13 +11,12 @@
 <body>
     {% if item_list %}
     <ul>
-    {% for item in item_list %}
-        <li><a href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li> 
-    {% endfor %}
+        {% for item in item_list %}
+            <li><a href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li> 
+        {% endfor %}
     </ul>
-{% else %}
-    <p>No items are available.</p>
-{% endif %}
-<p class="text-blue-600/25 dark:text-sky-400/25">The quick brown fox...</p>
+    {% else %}
+        <p>No items are available.</p>
+    {% endif %}
 </body>
 </html> 
