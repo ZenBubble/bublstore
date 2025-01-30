@@ -9,6 +9,14 @@
     {% tailwind_css %}
 </head>
 <body>
+    {% if request.user.is_authenticated %}
+        <p>Hello, {{request.user}}</p>
+        <a href="{% url 'store:logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'store:login' %}">Login</a>
+        <a href="{% url 'store:register' %}">Register</a>
+    {% endif %}
+    
     {% if item_list %}
     <ul>
         {% for item in item_list %}

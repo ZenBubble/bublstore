@@ -13,17 +13,22 @@
         <p>Item not found</p>
     {% endif %}
 
-<form method="post" action={{item.id}}>
-    <table>
-        {{form}}
-    </table>
-    {% csrf_token %}
-    <button name="submit">Submit</button>
-    </form>
+    {% if request.user.is_authenticated %}
+    <form method="post" action={{item.id}}>
+        <table>
+            {{form}}
+        </table>
+        {% csrf_token %}
+        <button name="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>Login to leave a review!</p>
+    {% endif %}
+
     
     {% for review in item.review_set.all %}
     <h1>{{review.title}}</h1>
-    <!-- <h2>Review by: {{review.user.name}}</h2> -->
+    <h2>Review by: {{review.user.username}}</h2>
     <p>{{review.content}}</p>
     {% endfor %}
 

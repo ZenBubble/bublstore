@@ -9,7 +9,9 @@ urlpatterns = [
     # /store/{{ item_id }}/
     path("<int:item_id>", views.detail, name="detail"),
     # /store/login/
-    path("login", views.login, name="login"),
+    path("login", views.loginView, name="login"),
     # /store/register/
     path("register", views.register, name="register"),
+
+    path("logout", views.logoutView, name="logout"),
 ]

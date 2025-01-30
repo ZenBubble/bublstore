@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from django.forms import ModelForm, Textarea
+from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm, Textarea, PasswordInput
 from .models import Review
 
 class ReviewForm(ModelForm):
@@ -10,7 +11,15 @@ class ReviewForm(ModelForm):
             'content': Textarea()
         }
 
-class RegisterForm(ModelForm):
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']
+
+class LoginForm(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+        widgets = {
+            'password': PasswordInput()
+        }

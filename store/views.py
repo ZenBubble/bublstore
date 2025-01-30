@@ -1,5 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404,  render
 from django.views import generic
 from django.urls import reverse
 
@@ -20,8 +22,9 @@ def detail(request, item_id):
     form = ReviewForm(instance=item)
     if request.method == "POST":
         if 'submit' in request.POST:
-            # create a review object with item filled in, so user doesn't have to manually select
-            review = Review(item=item)
+            # create a review object with item and user filled in, so user doesn't have to manually select
+            user = request.user
+            review = Review(item=item, user=user)
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
                 form.save()
@@ -32,10 +35,28 @@ def detail(request, item_id):
     }
     return render(request, "store/item.html", context) # request, template uri, context
 
-def login(request):
+def loginView(request):
+    form = LoginForm()
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect("/store")
+        else:
+            messages.info(request, "Username or password is incorrect")
+
     context = {
+        'form': form
     }
     return render(request, "store/login.html", context)
+
+def logoutView(request):
+    logout(request)
+    return HttpResponseRedirect("/store")
 
 def register(request):
     form = RegisterForm()
@@ -44,7 +65,9 @@ def register(request):
             form = RegisterForm(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("")
+                user = form.cleaned_data.get('username')
+                messages.success(request, "Account successfully created for " + user)
+                return HttpResponseRedirect("login")
     context = {
         "form": form
     }
