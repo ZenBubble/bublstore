@@ -9,6 +9,7 @@
     {% tailwind_css %}
 </head>
 <body>
+    <!-- display welcome message if logged in, else display login/register  -->
     {% if request.user.is_authenticated %}
         <p>Hello, {{request.user}}</p>
         <a href="{% url 'store:logout' %}">Logout</a>
@@ -17,6 +18,7 @@
         <a href="{% url 'store:register' %}">Register</a>
     {% endif %}
     
+    <!-- display all items as hyperlinks, else display error -->
     {% if item_list %}
     <ul>
         {% for item in item_list %}

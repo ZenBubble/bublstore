@@ -6,13 +6,10 @@
     <title>{{item.name}} - bublstore</title>
 </head>
 <body>
-    {% if item %}
-        <p>Looking at item no. {{item.id}}</p>
-        <p>This is {{item.name}}</p>
-    {% else %}
-        <p>Item not found</p>
-    {% endif %}
+    <p>Looking at item no. {{item.id}}</p>
+    <p>This is {{item.name}}</p>
 
+    <!-- allow user to post review, else display error -->
     {% if request.user.is_authenticated %}
     <form method="post" action={{item.id}}>
         <table>
@@ -25,7 +22,7 @@
         <p>Login to leave a review!</p>
     {% endif %}
 
-    
+    <!-- list all reviews -->
     {% for review in item.review_set.all %}
     <h1>{{review.title}}</h1>
     <h2>Review by: {{review.user.username}}</h2>

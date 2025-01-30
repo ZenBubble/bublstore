@@ -8,21 +8,22 @@ from django.urls import reverse
 from .models import *
 from .forms import *
 
-
+# Standard index view to list all created items
 class IndexView(generic.ListView):
     template_name = "store/index.html"
     context_object_name = "item_list"
 
     def get_queryset(self):
-        """Return the last five published questions."""
         return Item.objects.order_by("name")[:5]
 
+# Page for viewing a specific item, includes review functionality
 def detail(request, item_id):
+    # error page if we are accessing an item id that doesn't exist, most likely if it was manually inputted in url
     item = get_object_or_404(Item, pk=item_id)
     form = ReviewForm(instance=item)
     if request.method == "POST":
         if 'submit' in request.POST:
-            # create a review object with item and user filled in, so user doesn't have to manually select
+            # create a review object with item and user fields already populated, so user doesn't have to manually select
             user = request.user
             review = Review(item=item, user=user)
             form = ReviewForm(request.POST, instance=review)
@@ -33,8 +34,9 @@ def detail(request, item_id):
         "item": item,
         "form": form,
     }
-    return render(request, "store/item.html", context) # request, template uri, context
+    return render(request, "store/item.html", context)
 
+# Log in page
 def loginView(request):
     form = LoginForm()
     if request.method == "POST":
@@ -54,10 +56,12 @@ def loginView(request):
     }
     return render(request, "store/login.html", context)
 
+# Logout functionality, should not be directly accessed 
 def logoutView(request):
     logout(request)
     return HttpResponseRedirect("/store")
 
+# Register page
 def register(request):
     form = RegisterForm()
     if request.method == "POST":

@@ -13,5 +13,6 @@ urlpatterns = [
     # /store/register/
     path("register", views.register, name="register"),
 
+    # logout path, not directly accessible
     path("logout", views.logoutView, name="logout"),
 ]
