@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(WishList)
+admin.site.register(Cart)
 
 class ReviewInline(admin.TabularInline):
     model = Review
@@ -10,10 +10,10 @@ class ReviewInline(admin.TabularInline):
 
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {"fields": ["name"]}),
-        ("Wishlist Info", {"fields": ["wishlist"]})
+        (None, {"fields": ["name", "cost"]}),
+        # ("Cart Info", {"fields": ["cart"]})
     ]
     inlines = [ReviewInline]
-    list_display = ["name", "wishlist"]
+    list_display = ["name", "cost", Item.num_review]
 
 admin.site.register(Item, ItemAdmin)

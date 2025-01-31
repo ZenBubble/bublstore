@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
 def detail(request, item_id):
     # error page if we are accessing an item id that doesn't exist, most likely if it was manually inputted in url
     item = get_object_or_404(Item, pk=item_id)
-    form = ReviewForm(instance=item)
+    form = ReviewForm(instance=item) 
     if request.method == "POST":
         if 'submit' in request.POST:
             # create a review object with item and user fields already populated, so user doesn't have to manually select
@@ -29,6 +29,7 @@ def detail(request, item_id):
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
                 form.save()
+                messages.success(request, "Review added!")
                 return HttpResponseRedirect(reverse("store:detail", args=(item.id,)))
     context = {
         "item": item,

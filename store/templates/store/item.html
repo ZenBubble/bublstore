@@ -6,8 +6,12 @@
     <title>{{item.name}} - bublstore</title>
 </head>
 <body>
-    <p>Looking at item no. {{item.id}}</p>
+    <p>Looking at item no. {{item.id}} which costs ${{item.cost}}</p>
     <p>This is {{item.name}}</p>
+
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
 
     <!-- allow user to post review, else display error -->
     {% if request.user.is_authenticated %}
