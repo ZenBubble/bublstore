@@ -12,6 +12,8 @@ urlpatterns = [
     path("login", views.loginView, name="login"),
     # /store/register/
     path("register", views.register, name="register"),
+    # /store/cart
+    path("cart", views.cart, name="cart"),
 
     # logout path, not directly accessible
     path("logout", views.logoutView, name="logout"),

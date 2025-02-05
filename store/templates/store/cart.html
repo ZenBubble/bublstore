@@ -1,0 +1,33 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    {% tailwind_css %}
+</head>
+<body>
+    <!-- display cart items if logged in, else display login/register  -->
+    {% if request.user.is_authenticated %}
+        <p>{{request.user}}'s cart</p>
+        {% if request.user.is_authenticated %}
+            {% if request.user.cart.items.count > 0 %}
+                <!-- list all cart items-->
+                {% for item in request.user.cart.items.all %}
+                <h1>{{item.name}} - ${{item.cost}}</h1>
+                <p>Total: </p><s>${{request.user.cart.total_cost}}</s>
+                <p>Discount: NOT_GONNA_MAKE_YOU_INPUT_CREDIT_CARD_DETAILS -100%</p>
+                {% endfor %}
+            {% else %}
+                <p>You don't have any items!</p>
+                <a href="{% url 'store:index' %}">Shop for more?</a>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <a href="{% url 'store:login' %}">Login</a>
+        <a href="{% url 'store:register' %}">Register</a>
+    {% endif %}
+</body>
+</html> 

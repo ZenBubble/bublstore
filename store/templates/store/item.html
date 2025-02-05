@@ -13,8 +13,13 @@
         <p>{{message}}</p>
     {% endfor %}
 
-    <!-- allow user to post review, else display error -->
+    <!-- allow user to post review/add to cart, else display login message -->
     {% if request.user.is_authenticated %}
+    {% if item in request.user.cart.items.all %}
+        <p>Item in cart!</p>
+    {% else %}
+        <p>Add to cart?</p>
+    {% endif %}
     <form method="post" action={{item.id}}>
         <table>
             {{form}}

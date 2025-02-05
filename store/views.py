@@ -77,3 +77,9 @@ def register(request):
         "form": form
     }
     return render(request, "store/register.html", context)
+
+# cart page
+def cart(request):
+    context = {
+    }
+    return render(request, "store/cart.html", context)
