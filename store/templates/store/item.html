@@ -18,7 +18,7 @@
     {% if item in request.user.cart.items.all %}
         <p>Item in cart!</p>
     {% else %}
-        <p>Add to cart?</p>
+        <a href="{% url 'store:add_cart' item.id %}">Add to cart?</a>
     {% endif %}
     <form method="post" action={{item.id}}>
         <table>

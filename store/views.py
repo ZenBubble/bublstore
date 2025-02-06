@@ -57,11 +57,6 @@ def loginView(request):
     }
     return render(request, "store/login.html", context)
 
-# Logout functionality, should not be directly accessed 
-def logoutView(request):
-    logout(request)
-    return HttpResponseRedirect("/store")
-
 # Register page
 def register(request):
     form = RegisterForm()
@@ -83,3 +78,22 @@ def cart(request):
     context = {
     }
     return render(request, "store/cart.html", context)
+
+## BELOW ARE FUNCTIONAL VIEWS, WHCIH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
+
+# Logout functionality
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect("/store")
+
+# add item to cart
+def add_cart(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    request.user.cart.items.add(item)
+    return HttpResponseRedirect("/store")
+
+# remove item from cart
+def remove_cart(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    request.user.cart.items.remove(item)
+    return HttpResponseRedirect("/store")

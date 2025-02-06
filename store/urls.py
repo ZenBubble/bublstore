@@ -15,6 +15,14 @@ urlpatterns = [
     # /store/cart
     path("cart", views.cart, name="cart"),
 
-    # logout path, not directly accessible
-    path("logout", views.logoutView, name="logout"),
+    # BELOW ARE FUNCTIONAL VIEWS, WHICH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
+
+    # logout user
+    path("logout", views.logout_user, name="logout"),
+
+    # add item to cart
+    path("add_cart/<int:item_id>", views.add_cart, name="add_cart"),
+
+    # remove item from cart
+    path("remove_cart/<int:item_id>", views.remove_cart, name="remove_cart"),
 ]
