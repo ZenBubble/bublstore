@@ -1,20 +1,25 @@
-import datetime
-
 from django.test import TestCase
-from django.utils import timezone
 
-from .models import WishList
+from .models import *
 
-## FOR UNIT TESTING
+## FOR UNIT TESTING, RUN PYTHON MANAGE.PY TEST
 
-class QuestionModelTests(TestCase): ## example test case, run by typing python manage.py test store
-    def test_was_published_recently_with_future_question(self):
-        """
-        was_published_recently() returns False for questions whose pub_date
-        is in the future.
-        """
-        time = timezone.now() + datetime.timedelta(days=30)
-        future_question = WishList(pub_date=time)
-        self.assertIs(future_question.was_created_recently(), False)
+class ModelTests(TestCase):
+    def setUp(self):
+        global test_user, new_item
+        test_user = User.objects.create()
+        new_item = Item.objects.create(name='test1', cost='10', description='null')
+
+    def test_num_reviews_zero_and_edge(self):
+        self.assertEqual(new_item.num_review(), 0)
+        new_review = Review.objects.create(item=new_item,user=test_user)
+        self.assertEqual(new_item.num_review(), 1)
+
+    def test_cart_user_link_and_adding_items(self):
+        self.assertTrue(test_user.cart)
+        cart = test_user.cart
+        self.assertEqual(cart.total_cost(), 0)
+        cart.items.add(new_item)
+        self.assertEqual(cart.total_cost(), 10)
 
 ## VIEW TESTING (UI TESTING) IS A BIT MORE COMPLICATED, LOOK AT DJANGO DOCUMENTATION

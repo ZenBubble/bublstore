@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 
 class Item(models.Model):
     name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     
     def __str__(self):
@@ -24,7 +25,7 @@ class Cart(models.Model):
 @receiver(post_save, sender=User)
 def cart_create(sender, instance=None, created=False, **kwargs):
     if created:
-        Cart.objects.create(user=instance,)
+        Cart.objects.create(user=instance)
 
 class Review(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

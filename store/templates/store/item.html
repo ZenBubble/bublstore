@@ -8,12 +8,14 @@
 <body>
     <p>Looking at item no. {{item.id}} which costs ${{item.cost}}</p>
     <p>This is {{item.name}}</p>
-
+    <p>{{item.description}}</p>
+    
+    <!-- succesfully left review flash message -->
     {% for message in messages %}
         <p>{{message}}</p>
     {% endfor %}
 
-    <!-- allow user to post review/add to cart, else display login message -->
+    <!-- allow user to post review/add to cart if logged in, else display login message -->
     {% if request.user.is_authenticated %}
     {% if item in request.user.cart.items.all %}
         <p>Item in cart!</p>
@@ -33,9 +35,9 @@
 
     <!-- list all reviews -->
     {% for review in item.review_set.all %}
-    <h1>{{review.title}}</h1>
-    <h2>Review by: {{review.user.username}}</h2>
-    <p>{{review.content}}</p>
+        <h1>{{review.title}}</h1>
+        <h2>Review by: {{review.user.username}}</h2>
+        <p>{{review.content}}</p>
     {% endfor %}
 
 </body>
