@@ -1,3 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* h1, p, base classe */
+@tailwind components; /* more advanced stuff */
+@tailwind utilities; /* external stuff */
+
+
+@layer base {
+    * {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    }
+
+    h1 {
+        font-size: 3rem /* 96px */;
+        line-height: 1;
+    }
+
+    p {
+        @apply text-dark;
+    }
+
+    a {
+        @apply text-dark text-lg;
+    }
+}
+
+@layer components {
+
+    .url::after {
+        @apply bg-dark;
+        content:'';
+        height: 2px;
+        width: 0%;
+        display: block;
+        bottom: -100px;
+        transition: all 0.2s;
+    }
+
+    .url:hover::after {
+        width: 100%;
+    }
+}

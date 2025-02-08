@@ -9,21 +9,14 @@
     {% tailwind_css %}
 </head>
 <body>
-    <!-- display welcome message if logged in, else display login/register  -->
-    {% if request.user.is_authenticated %}
-        <p>Hello, {{request.user}}</p>
-        <a href="{% url 'store:cart' %}">My cart</a>
-        <a href="{% url 'store:logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'store:login' %}">Login</a>
-        <a href="{% url 'store:register' %}">Register</a>
-    {% endif %}
+    {% include "store/header.html" %} 
+    {% include "store/base.html" %} 
     
     <!-- display all items as hyperlinks, else display error -->
     {% if item_list %}
     <ul>
         {% for item in item_list %}
-            <li><a href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li> 
+            <li class="text-red-700"><a href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li> 
         {% endfor %}
     </ul>
     {% else %}

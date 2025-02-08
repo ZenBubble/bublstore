@@ -32,3 +32,8 @@ class Review(models.Model):
     item = models.ForeignKey(Item,on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     content = models.CharField(max_length=100)
+
+class Order(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    item = models.ForeignKey(Item,on_delete=models.CASCADE)
+    details = models.CharField(max_length=2000)
