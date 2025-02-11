@@ -5,10 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    {% if request.user.is_authenticated %}
+        <title>{{request.user}}'s cart</title>
+    {% else %}
+        <title>Nobodies cart!</title>
+    {% endif %}
     {% tailwind_css %}
 </head>
 <body>
+    {% include "store/header.html" %} 
+    {% include "store/base.html" %} 
     <!-- display cart items if logged in, else display login/register  -->
     {% if request.user.is_authenticated %}
         <p>{{request.user}}'s cart</p>

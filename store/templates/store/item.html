@@ -1,12 +1,16 @@
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{item.name}} - bublstore</title>
+    {% tailwind_css %}
 </head>
 <body>
     {% include "store/header.html" %} 
+    {% include "store/base.html" %} 
     <p>Looking at item no. {{item.id}} which costs ${{item.cost}}</p>
     <p>This is {{item.name}}</p>
     <p>{{item.description}}</p>

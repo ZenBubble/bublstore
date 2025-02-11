@@ -50,9 +50,6 @@ module.exports = {
                 'accent2':'#FFEDE1',
                 'dark':'#0E1C36'
             },
-            animation: {
-                
-            },
         },
     },
     plugins: [
