@@ -11,18 +11,19 @@
 <body>
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
-    <h2>Log In</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.password.label}}
-        {{form.password}}
-        {{form.errors}}
-        <button type="submit">Log In</button>
-    </form>
-    {% for message in messages %}
-        <p>{{message}}</p>
-    {% endfor %}
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{form.username.label}}
+            {{form.username}}
+            {{form.password.label}}
+            {{form.password}}
+            {{form.errors}}
+            <button type="submit">Log In</button>
+        </form>
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>

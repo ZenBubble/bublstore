@@ -16,7 +16,8 @@
     {% if item_list %}
     <ul>
         {% for item in item_list %}
-            <li class="text-red-700"><a href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li> 
+            <li><a class="text-red-700" href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li>
+            <img src="{{ item.image.url }}" alt="{{ item.name }} image">
         {% endfor %}
     </ul>
     {% else %}

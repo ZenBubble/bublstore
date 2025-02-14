@@ -4,9 +4,10 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 class Item(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200) 
     description = models.CharField(max_length=200)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to="items/", default="items/placeholder.png")
     
     def __str__(self):
         return self.name
