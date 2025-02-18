@@ -11,9 +11,30 @@
 <body>
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
-    <p>Looking at item no. {{item.id}} which costs ${{item.cost}}</p>
-    <p>This is {{item.name}}</p>
-    <p>{{item.description}}</p>
+
+    <div class="grid px-28 py-12 justify-between gap-11 columns-10">
+        <div class="h-[500px] w-[500px]">
+            <img src="{{item.image.url}}" class="rounded-lg shadow-md">
+        </div>
+        <div class="col-start-4">
+            <p class="text-5xl">{{item.name}}</p>
+            <p class="text-4xl py-7">${{item.cost}}</p>
+            <p class="text-xl">{{item.description}}</p>
+            {% if request.user.is_authenticated %}
+                {% if item in request.user.cart.items.all %}
+                    <div class="py-7 w-full">
+                        <button class="py-5 w-full bg-dark text-white text-xl rounded-md opacity-50 cursor-not-allowed">Item already in cart!</button>
+                    </div>
+                {% else %}
+                    <div class="py-7 w-full">
+                        <a href="{% url 'store:add_cart' item.id %}"><button class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Add to cart?</button></a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+    </div>
+    
     
     <!-- succesfully left review flash message -->
     {% for message in messages %}
@@ -22,20 +43,15 @@
 
     <!-- allow user to post review/add to cart if logged in, else display login message -->
     {% if request.user.is_authenticated %}
-    {% if item in request.user.cart.items.all %}
-        <p>Item in cart!</p>
-    {% else %}
-        <a href="{% url 'store:add_cart' item.id %}">Add to cart?</a>
-    {% endif %}
-    <form method="post" action={{item.id}}>
-        <table>
-            {{form}}
-        </table>
-        {% csrf_token %}
-        <button name="submit">Submit</button>
-        </form>
-    {% else %}
-        <p>Login to leave a review!</p>
+        <form method="post" action={{item.id}}>
+            <table>
+                {{form}}
+            </table>
+            {% csrf_token %}
+            <button name="submit">Submit</button>
+            </form>
+        {% else %}
+            <p>Login to leave a review!</p>
     {% endif %}
 
     <!-- list all reviews -->

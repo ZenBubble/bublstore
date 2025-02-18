@@ -32,9 +32,14 @@
         display: block;
         bottom: -100px;
         transition: all 0.2s;
+        float: right
     }
 
     .url:hover::after {
         width: 100%;
+    }
+
+    .clickable-image {
+        @apply transition-all duration-100 w-0 opacity-0;
     }
 }

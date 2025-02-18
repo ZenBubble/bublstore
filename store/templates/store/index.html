@@ -11,15 +11,33 @@
 <body>
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
-    
+    <!-- introductory statement -->
+    <div class="py-64">
+        <h1 class="text-center">Welcome to bublstore!</h1>
+        <p class="text-center text-lg px-96">Whether you're a potential employer or a friend of mine, welcome. 
+            This a mock shop project that I made as a side project, and you can find the full details 
+            <a class="text-purple-500" href="https://github.com/ZenBubble/bublstore">here.</a> Enjoy your stay!</p> 
+    </div>
+
     <!-- display all items as hyperlinks, else display error -->
     {% if item_list %}
-    <ul>
+    <div class="px-44 grid md:grid-cols-3 gap-6">
         {% for item in item_list %}
-            <li><a class="text-red-700" href="{% url 'store:detail' item.id %}">{{ item.name }}</a></li>
-            <img src="{{ item.image.url }}" alt="{{ item.name }} image">
+            <div class="object-cover group relative image-link hover:-translate-y-1 hover:drop-shadow-lg translate-all duration-100">
+                <a href="{% url 'store:detail' item.id %}">
+                    <img class="rounded-xl" src="{{ item.image.url }}" alt="image for {{ item.name }}>">
+                    <!-- hover element -->
+                    <div class="clickable-image rounded-l-xl group-hover:opacity-100 group-hover:w-2/3 absolute h-full bg-black/80 flex items-center bottom-0 justify-center origin-right">
+                        <div class="px-4">
+                            <h2 class="text-white text-3xl">{{item.name}}</h2>
+                            <p class="text-white">{{item.description}}</p>
+                            <p class="text-white text-xl">${{item.cost}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
     {% else %}
         <p>No items are available.</p>
     {% endif %}

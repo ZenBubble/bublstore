@@ -10,7 +10,7 @@ class ReviewInline(admin.TabularInline):
 
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {"fields": ["name", "cost", "image"]}),
+        (None, {"fields": ["name", "description", "cost", "image"]}),
         # ("Cart Info", {"fields": ["cart"]})
     ]
     inlines = [ReviewInline]
