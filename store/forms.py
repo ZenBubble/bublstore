@@ -8,7 +8,8 @@ class ReviewForm(ModelForm):
         model = Review
         fields = ['title', 'content']
         widgets = {
-            'content': Textarea()
+            'title': Textarea(attrs={'class': 'rounded-xl bg-accent h-2','style':'resize:none;'}),
+            'content': Textarea(attrs={'class': 'rounded-xl bg-accent h-full','style':'resize:none;'})
         }
 
 class RegisterForm(UserCreationForm):

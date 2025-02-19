@@ -12,7 +12,8 @@
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
 
-    <div class="grid px-28 py-12 justify-between gap-11 columns-10">
+    <!-- Item section -->
+    <div class="grid px-28 py-16 justify-between gap-11 columns-10">
         <div class="h-[500px] w-[500px]">
             <img src="{{item.image.url}}" class="rounded-lg shadow-md">
         </div>
@@ -34,32 +35,50 @@
         </div>
         
     </div>
-    
-    
-    <!-- succesfully left review flash message -->
-    {% for message in messages %}
-        <p>{{message}}</p>
-    {% endfor %}
 
-    <!-- allow user to post review/add to cart if logged in, else display login message -->
-    {% if request.user.is_authenticated %}
-        <form method="post" action={{item.id}}>
-            <table>
-                {{form}}
-            </table>
-            {% csrf_token %}
-            <button name="submit">Submit</button>
-            </form>
-        {% else %}
-            <p>Login to leave a review!</p>
-    {% endif %}
+    <!-- Review section -->
+    <div class="px-28"> 
+        <h1 class="text-3xl">Reviews</h1>
 
-    <!-- list all reviews -->
-    {% for review in item.review_set.all %}
-        <h1>{{review.title}}</h1>
-        <h2>Review by: {{review.user.username}}</h2>
-        <p>{{review.content}}</p>
-    {% endfor %}
+        <!-- succesfully left review flash message -->
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
 
+        <!-- allow user to post review/add to cart if logged in, else display login message -->
+        {% if request.user.is_authenticated %}
+            <div class="py-3">
+                <form method="post" action={{item.id}}>
+                        <div class="py-6">
+                            <label for="title" class="block mb-2 text-sm font-medium text-dark">Title</label>
+                            <div id="title">
+                                {{form.title}}
+                            </div>
+                            <label for="content" class="block mb-2 text-sm font-medium text-dark">Content</label>
+                            <div id="content">
+                                {{form.content}}
+                            </div>
+                            {% csrf_token %}
+                        </div>
+                        <button name="submit" class="py-6 w-96 bg-dark text-white text-xl rounded-md opacity-50">Submit</button>
+                    </form>
+                {% else %}
+                    <p>Login to leave a review!</p>
+            </div>
+        {% endif %}
+
+        <!-- list all reviews -->
+        {% for review in item.review_set.all %}
+            <div class="py-6">
+                <div class="py-6 block bg-secondary border rounded-lg shadow-lg">
+                    <div class="px-6">
+                        <h1 class="text-4xl">{{review.title}}</h1>
+                        <h2 class="text-xl">Review by: {{review.user.username}}</h2>
+                        <p class="text-lg">{{review.content}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
