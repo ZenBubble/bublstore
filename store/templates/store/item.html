@@ -51,34 +51,37 @@
                 <form method="post" action={{item.id}}>
                         <div class="py-6">
                             <label for="title" class="block mb-2 text-sm font-medium text-dark">Title</label>
-                            <div id="title">
+                            <div id="title" class="h-12 mb-6">
                                 {{form.title}}
                             </div>
                             <label for="content" class="block mb-2 text-sm font-medium text-dark">Content</label>
-                            <div id="content">
+                            <div id="content" class="h-12">
                                 {{form.content}}
                             </div>
                             {% csrf_token %}
                         </div>
-                        <button name="submit" class="py-6 w-96 bg-dark text-white text-xl rounded-md opacity-50">Submit</button>
+                        <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
                     </form>
                 {% else %}
                     <p>Login to leave a review!</p>
             </div>
         {% endif %}
 
-        <!-- list all reviews -->
-        {% for review in item.review_set.all %}
-            <div class="py-6">
-                <div class="py-6 block bg-secondary border rounded-lg shadow-lg">
-                    <div class="px-6">
-                        <h1 class="text-4xl">{{review.title}}</h1>
-                        <h2 class="text-xl">Review by: {{review.user.username}}</h2>
-                        <p class="text-lg">{{review.content}}</p>
+        <div class="mt-3">
+            <!-- list all reviews -->
+            {% for review in item.review_set.all %}
+                <div class="py-6">
+                    <div class="py-6 block bg-secondary border rounded-lg shadow-lg">
+                        <div class="px-6">
+                            <h1 class="text-4xl">{{review.title}}</h1>
+                            <h2 class="text-xl">Review by: {{review.user.username}}</h2>
+                            <p class="text-lg">{{review.content}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        
     </div>
 </body>
 </html>

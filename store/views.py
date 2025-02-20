@@ -96,5 +96,5 @@ def add_cart(request, item_id):
 def remove_cart(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     request.user.cart.items.remove(item)
-    return HttpResponseRedirect("/store")
+    return HttpResponseRedirect("/store/cart")
 

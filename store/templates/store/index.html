@@ -13,7 +13,7 @@
     {% include "store/base.html" %} 
 
     <!-- introductory statement -->
-    <div class="py-64">
+    <div class="py-64 pb-72">
         <h1 class="text-center">Welcome to bublstore!</h1>
         <p class="text-center text-lg px-96">Whether you're a potential employer or a friend of mine, welcome. 
             This a mock shop project that I made as a side project, and you can find the full details 
@@ -31,7 +31,7 @@
                     <div class="clickable-image rounded-l-xl group-hover:opacity-100 group-hover:w-2/3 absolute h-full bg-black/80 flex items-center bottom-0 justify-center origin-right">
                         <div class="px-4">
                             <h2 class="text-white text-3xl">{{item.name}}</h2>
-                            <p class="text-white">{{item.description}}</p>
+                            <p class="text-white py-3">{{item.description}}</p>
                             <p class="text-white text-xl">${{item.cost}}</p>
                         </div>
                     </div>

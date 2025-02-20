@@ -23,6 +23,9 @@
 }
 
 @layer components {
+    .url {
+        @apply text-xl;
+    }
 
     .url::after {
         @apply bg-dark;

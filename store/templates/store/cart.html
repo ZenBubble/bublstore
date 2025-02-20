@@ -15,22 +15,40 @@
 <body>
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
+    <h1 class="m-6">{{request.user}}'s cart</h1>
     <!-- display cart items if logged in, else display login/register  -->
     {% if request.user.is_authenticated %}
-        <p>{{request.user}}'s cart</p>
-        {% if request.user.is_authenticated %}
+        <div class="grid gap-6 m-6 grid-cols-2">
             {% if request.user.cart.items.count > 0 %}
                 <!-- list all cart items-->
-                {% for item in request.user.cart.items.all %}
-                    <h1>{{item.name}} - ${{item.cost}} <a href="{% url 'store:remove_cart' item.id %}">Remove from cart?</a> </h1>
-                {% endfor %}
-                <p>Total: </p><s>${{request.user.cart.total_cost}}</s>
-                <p>Discount: NOT_GONNA_MAKE_YOU_INPUT_CREDIT_CARD_DETAILS -100%</p>
+                <div class="col-span-1">
+                    {% for item in request.user.cart.items.all %}
+                        <div class="py-6 my-6 w-full block bg-secondary border rounded-lg shadow-lg">
+                            <div class="px-6 flex gap-5">
+                                <div class="h-[100px] w-[100px]">
+                                    <img src="{{item.image.url}}" class="rounded-lg shadow-md">
+                                </div>
+                                <div>
+                                    <h1 class="text-4xl">{{item.name}}</h1>
+                                    <h2 class="text-xl">${{item.cost}}</h2>
+                                </div>
+                                <a href="{% url 'store:remove_cart' item.id %}" class="absolute right-1/2 m-6 p-3 self-center bg-red-600 rounded-lg text-white hover:opacity-50 transition-all duration-100">Remove from cart?</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-span-1 bg-secondary rounded-lg">
+                    <div class="m-6 absolute bottom-56">
+                        <p>Subtotal: ${{request.user.cart.total_cost}}</p>
+                        <p>Discount: NOT_GONNA_MAKE_YOU_INPUT_CREDIT_CARD_DETAILS -100%</p>
+                        <p>Total: $0</p>
+                    </div>
+                </div>
             {% else %}
                 <p>You don't have any items!</p>
                 <a href="{% url 'store:index' %}">Shop for more?</a>
             {% endif %}
-        {% endif %}
+        </div>
     {% else %}
         <a href="{% url 'store:login' %}">Login</a>
         <a href="{% url 'store:register' %}">Register</a>
