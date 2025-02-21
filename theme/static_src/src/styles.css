@@ -45,4 +45,5 @@
     .clickable-image {
         @apply transition-all duration-100 w-0 opacity-0;
     }
+
 }

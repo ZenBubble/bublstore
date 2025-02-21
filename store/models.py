@@ -21,6 +21,8 @@ class Cart(models.Model):
         return (self.user.username + "'s cart")
     def total_cost(self):
         return sum(item.cost for item in self.items.all())
+    def num_items(self):
+        return self.items.all().count()
 
 # automatically creates the cart object and assigns to the new user
 @receiver(post_save, sender=User)

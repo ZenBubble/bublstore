@@ -11,19 +11,21 @@
 <body>
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
-    <div>
-        <form method="post">
+    <div class="justify-center align-middle text-center bg-secondary my-32 mx-[32rem] h-auto p-6 rounded-xl shadow-xl">
+        <form method="post" class="p-5">
             {% csrf_token %}
-            {{form.username.label}}
-            {{form.username}}
-            {{form.password.label}}
-            {{form.password}}
+            <label for="username">{{form.username.label}}</label>
+            <div id="username" class="mb-6">{{form.username}}</div>
+            <label for="password">{{form.password.label}}</label>
+            <div id="password" class="mb-6">{{form.password}}</div>
             {{form.errors}}
-            <button type="submit">Log In</button>
+            <button type="submit" class="bg-dark text-white w-2/3 py-3 rounded-xl hover:shadow-xl hover:bg-dark/90">Log In</button>
+            <p class="mt-3">Don't have an account yet? <a href="{% url 'store:register' %}" class="text-purple-800 hover:text-purple-950">Register here</a></p>
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
         </form>
-        {% for message in messages %}
-            <p>{{message}}</p>
-        {% endfor %}
+        
     </div>
 </body>
 </html>

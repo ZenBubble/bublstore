@@ -46,8 +46,8 @@
         {% endfor %}
 
         <!-- allow user to post review/add to cart if logged in, else display login message -->
-        {% if request.user.is_authenticated %}
             <div class="py-3">
+                {% if request.user.is_authenticated %}
                 <form method="post" action={{item.id}}>
                         <div class="py-6">
                             <label for="title" class="block mb-2 text-sm font-medium text-dark">Title</label>
@@ -64,8 +64,8 @@
                     </form>
                 {% else %}
                     <p>Login to leave a review!</p>
+                {% endif %}
             </div>
-        {% endif %}
 
         <div class="mt-3">
             <!-- list all reviews -->
