@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     context_object_name = "item_list"
 
     def get_queryset(self):
-        return Item.objects.order_by("name")[:5]
+        return Item.objects.order_by("-name")
 
 # Page for viewing a specific item, includes review functionality
 def detail(request, item_id):
@@ -75,9 +75,30 @@ def register(request):
 
 # cart page
 def cart(request):
+    form = OrderForm()
+    if request.method == "POST":
+        if 'submit' in request.POST:
+            user = request.user
+            order = Order(cart=user.cart)
+            form = OrderForm(request.POST, instance=order)
+            if form.is_valid():
+                if not user.cart.order_set.all():
+                    form.save()
+                    messages.success(request, "Order succesfully made!")
+                    return HttpResponseRedirect("/store/cart")
+                else:
+                    messages.error(request, "Sorry! You currently have an unfulfilled order")
+                    return HttpResponseRedirect("/store/cart")
     context = {
+        "form": form
     }
     return render(request, "store/cart.html", context)
+
+# contact page
+def contact(request):
+    context = {
+    }
+    return render(request, "store/contact.html", context)
 
 ## BELOW ARE FUNCTIONAL VIEWS, WHCIH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
 

@@ -13,6 +13,8 @@ urlpatterns = [
     path("register", views.register, name="register"),
     # /store/cart
     path("cart", views.cart, name="cart"),
+    # /store/contact
+    path("contact", views.contact, name="contact"),
 
     # BELOW ARE FUNCTIONAL VIEWS, WHICH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
 

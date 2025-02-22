@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 
 class Item(models.Model):
     name = models.CharField(max_length=200) 
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to="items/", default="items/placeholder.png")
     
@@ -37,6 +37,7 @@ class Review(models.Model):
     content = models.CharField(max_length=1000)
 
 class Order(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    item = models.ForeignKey(Item,on_delete=models.CASCADE)
+    def __str__(self):
+        return (self.cart.user.username + "'s order")
+    cart = models.ForeignKey(Cart,on_delete=models.CASCADE)
     details = models.CharField(max_length=2000)

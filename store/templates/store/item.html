@@ -49,19 +49,19 @@
             <div class="py-3">
                 {% if request.user.is_authenticated %}
                 <form method="post" action={{item.id}}>
-                        <div class="py-6">
-                            <label for="title" class="block mb-2 text-sm font-medium text-dark">Title</label>
-                            <div id="title" class="h-12 mb-6">
-                                {{form.title}}
-                            </div>
-                            <label for="content" class="block mb-2 text-sm font-medium text-dark">Content</label>
-                            <div id="content" class="h-12">
-                                {{form.content}}
-                            </div>
-                            {% csrf_token %}
+                    <div class="py-6">
+                        <label for="title" class="block mb-2 text-sm font-medium text-dark">Title</label>
+                        <div id="title" class="h-12 mb-6">
+                            {{form.title}}
                         </div>
-                        <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
-                    </form>
+                        <label for="content" class="block mb-2 text-sm font-medium text-dark">Content</label>
+                        <div id="content" class="h-12">
+                            {{form.content}}
+                        </div>
+                        {% csrf_token %}
+                    </div>
+                    <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
+                </form>
                 {% else %}
                     <p>Login to leave a review!</p>
                 {% endif %}

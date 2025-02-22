@@ -17,19 +17,20 @@
         <h1 class="text-center">Welcome to bublstore!</h1>
         <p class="text-center text-lg px-96">Whether you're a potential employer or a friend of mine, welcome. 
             This a mock shop project that I made as a side project, and you can find the full details 
-            <a class="text-purple-500" href="https://github.com/ZenBubble/bublstore">here.</a> Enjoy your stay!</p> 
+            <a class="text-purple-800 hover:text-purple-950" href="https://github.com/ZenBubble/bublstore">here.</a> Enjoy your stay!</p> 
+        <p class="text-center text-lg px-96">PREFACE: This wesbite was built with a 1920x1080 monitor and thus elements may be misaligned if you have an irregular screen size. This is by design, and to punish users with weird monitors or phones.</p>
     </div>
 
     <!-- display all items as hyperlinks, else display error -->
     {% if item_list %}
-    <div class="px-44 grid md:grid-cols-3 gap-6">
+    <div class="px-44 grid md:grid-cols-3 gap-6 mb-6">
         {% for item in item_list %}
             <div class="object-cover group relative image-link hover:-translate-y-1 hover:drop-shadow-lg translate-all duration-100">
                 <a href="{% url 'store:detail' item.id %}">
                     <img class="rounded-xl" src="{{ item.image.url }}" alt="image for {{ item.name }}>">
                     <!-- hover element -->
-                    <div class="clickable-image rounded-l-xl group-hover:opacity-100 group-hover:w-2/3 absolute h-full bg-black/80 flex items-center bottom-0 justify-center origin-right">
-                        <div class="px-4">
+                    <div class="clickable-image rounded-r-xl group-hover:scale-x-[66%] w-full absolute h-full bg-black/80 flex items-center bottom-0 justify-center origin-right">
+                        <div class="mx-20 absolute scale-x-[150%]">
                             <h2 class="text-white text-3xl">{{item.name}}</h2>
                             <p class="text-white py-3">{{item.description}}</p>
                             <p class="text-white text-xl">${{item.cost}}</p>
