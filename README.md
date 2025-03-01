@@ -1,5 +1,5 @@
 # bublstore
-Full stack project made for a mock website offering various services. Self-hosted backend with a simple html + css frontend
+Full stack project made for a mock website offering various services. Self-hosted backend with a simple html + tailwind frontend
 
 ## Features 
 ### ❤️ = Not yet implemented 
@@ -10,17 +10,9 @@ Full stack project made for a mock website offering various services. Self-hoste
 - 💛 Custom user authentication and home server hosting. This is the main focus of this project, as I want to explore more of the information encryption and web protocols.
 - 💛 All in one dockerized version to learn docker.
 - ❤️ Automated tests using Django tests as well as GitHub actions. This is for learning CI/CD and program testing.
-- ❤️ Clippy type mascot that details what each page is and how it was implemented.
+- ❤️ Clippy type mascot that details what each page is and how it was implemented. Since its 2025, I'll also train a retrieval model for simple queuries like "do you offer ___."
 - ❤️ Bug reports that save a snapshot of the html at time of bug.
 
 ## Installation/development
 "pip install -r requirements.txt" to install dependencies, recommended to do in a virtual environment
-
-## Personal Notes
-When making new models (data) or changing existing ones: 
-- python manage.py makemigrations store
-- python manage.py migrate
-
-For production, run both:
-- python manage.py runserver
-- python manage.py tailwind start
+Docker image coming soon
