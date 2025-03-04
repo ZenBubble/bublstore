@@ -12,9 +12,9 @@ services:
    env_file:
      - .env
  
- django-web:
+ store:
    build: .
-   container_name: django-docker
+   container_name: bublstore
    ports:
      - "8000:8000"
    depends_on:
