@@ -873,6 +873,31 @@ a {
   margin-bottom: 8rem;
 }
 
+.my-64 {
+  margin-top: 16rem;
+  margin-bottom: 16rem;
+}
+
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.mx-48 {
+  margin-left: 12rem;
+  margin-right: 12rem;
+}
+
+.mx-64 {
+  margin-left: 16rem;
+  margin-right: 16rem;
+}
+
+.mx-96 {
+  margin-left: 24rem;
+  margin-right: 24rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -895,6 +920,10 @@ a {
 
 .mt-48 {
   margin-top: 12rem;
+}
+
+.mb-72 {
+  margin-bottom: 18rem;
 }
 
 .block {
@@ -1050,6 +1079,32 @@ a {
   background-color: rgb(175 203 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white\/50 {
+  background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-white\/70 {
+  background-color: rgb(255 255 255 / 0.7);
+}
+
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+.bg-white\/30 {
+  background-color: rgb(255 255 255 / 0.3);
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1065,6 +1120,10 @@ a {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-12 {
+  padding: 3rem;
 }
 
 .px-28 {
@@ -1135,6 +1194,36 @@ a {
 .py-96 {
   padding-top: 24rem;
   padding-bottom: 24rem;
+}
+
+.px-\[7\] {
+  padding-left: 7;
+  padding-right: 7;
+}
+
+.px-\[28\] {
+  padding-left: 28;
+  padding-right: 28;
+}
+
+.px-\[32\] {
+  padding-left: 32;
+  padding-right: 32;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .pb-72 {

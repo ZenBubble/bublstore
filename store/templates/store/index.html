@@ -12,18 +12,18 @@
     {% include "store/header.html" %} 
     {% include "store/base.html" %} 
 
-    <video class="absolute z-0" width="1920" height="1080" autoplay muted>
+    <video loop class="absolute z-0" width="1920" height="1080" autoplay muted>
         <source src={% static 'store/videos/demo_reel.mp4' %} type="video/mp4">
       Your browser does not support the video tag.
       </video>
 
     <!-- introductory statement -->
-    <div class="py-64 pb-72 z-1 absolute">
+    <div class="mx-96 my-64 mb-72 p-6 px-4 az-1 absolute bg-white/70 rounded-lg">
         <h1 class="text-center">Welcome to bublstore!</h1>
-        <p class="text-center text-lg px-96">Whether you're a potential employer or a friend of mine, welcome. 
+        <p class="text-center text-lg">Whether you're a potential employer or a friend of mine, welcome. 
             This a mock shop project that I made as a side project, and you can find the full details 
             <a class="text-purple-800 hover:text-purple-950" href="https://github.com/ZenBubble/bublstore">here.</a> Enjoy your stay!</p> 
-        <p class="text-center text-lg px-96">PREFACE: This wesbite was built with a 1920x1080 monitor and thus elements may be misaligned if you have an irregular screen size. This is by design, and to punish users with weird monitors or phones.</p>
+        <p class="text-center text-lg">PREFACE: This wesbite was built with a 1920x1080 monitor and thus elements may be misaligned if you have an irregular screen size. This is by design, and to punish users with weird monitors or phones.</p>
     </div>
 
     <div class="py-96 mt-48">
