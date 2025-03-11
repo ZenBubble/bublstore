@@ -805,6 +805,10 @@ a {
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -829,6 +833,10 @@ a {
   top: 0px;
 }
 
+.left-0 {
+  left: 0px;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -837,16 +845,16 @@ a {
   z-index: 50;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
 
 .col-start-4 {
   grid-column-start: 4;
-}
-
-.m-16 {
-  margin: 4rem;
 }
 
 .m-6 {
@@ -861,6 +869,11 @@ a {
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.mx-96 {
+  margin-left: 24rem;
+  margin-right: 24rem;
 }
 
 .mx-\[32rem\] {
@@ -878,26 +891,6 @@ a {
   margin-bottom: 16rem;
 }
 
-.mx-32 {
-  margin-left: 8rem;
-  margin-right: 8rem;
-}
-
-.mx-48 {
-  margin-left: 12rem;
-  margin-right: 12rem;
-}
-
-.mx-64 {
-  margin-left: 16rem;
-  margin-right: 16rem;
-}
-
-.mx-96 {
-  margin-left: 24rem;
-  margin-right: 24rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -910,20 +903,16 @@ a {
   margin-bottom: 1.5rem;
 }
 
+.mb-72 {
+  margin-bottom: 18rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
-.mt-32 {
-  margin-top: 8rem;
-}
-
 .mt-48 {
   margin-top: 12rem;
-}
-
-.mb-72 {
-  margin-bottom: 18rem;
 }
 
 .block {
@@ -1069,6 +1058,11 @@ a {
   background-color: rgb(215 249 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity, 1));
+}
+
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
@@ -1079,30 +1073,8 @@ a {
   background-color: rgb(175 203 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-white\/50 {
-  background-color: rgb(255 255 255 / 0.5);
-}
-
 .bg-white\/70 {
   background-color: rgb(255 255 255 / 0.7);
-}
-
-.bg-white\/20 {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
-.bg-white\/30 {
-  background-color: rgb(255 255 255 / 0.3);
 }
 
 .object-cover {
@@ -1122,13 +1094,14 @@ a {
   padding: 1.5rem;
 }
 
-.p-12 {
-  padding: 3rem;
-}
-
 .px-28 {
   padding-left: 7rem;
   padding-right: 7rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-44 {
@@ -1144,11 +1117,6 @@ a {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.px-96 {
-  padding-left: 24rem;
-  padding-right: 24rem;
 }
 
 .py-16 {
@@ -1176,11 +1144,6 @@ a {
   padding-bottom: 1.5rem;
 }
 
-.py-64 {
-  padding-top: 16rem;
-  padding-bottom: 16rem;
-}
-
 .py-7 {
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
@@ -1194,40 +1157,6 @@ a {
 .py-96 {
   padding-top: 24rem;
   padding-bottom: 24rem;
-}
-
-.px-\[7\] {
-  padding-left: 7;
-  padding-right: 7;
-}
-
-.px-\[28\] {
-  padding-left: 28;
-  padding-right: 28;
-}
-
-.px-\[32\] {
-  padding-left: 32;
-  padding-right: 32;
-}
-
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.pb-72 {
-  padding-bottom: 18rem;
 }
 
 .text-center {
@@ -1255,11 +1184,6 @@ a {
 
 .text-5xl {
   font-size: 3rem;
-  line-height: 1;
-}
-
-.text-6xl {
-  font-size: 3.75rem;
   line-height: 1;
 }
 

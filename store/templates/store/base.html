@@ -5,6 +5,34 @@
 <head>
     {% tailwind_css %}
 </head>
-    <body class="bg-primary">
-</body>
+    <!-- Navigation bar, includes account information -->
+    <header class="bg-secondary drop-shadow-lg flex justify-between py-8 px-8 sticky top-0 z-50"> 
+        <h1 class="font-bold">bublstore</h1>
+        <div class="flex justify-between space-x-10 items-center">
+          <!-- display welcome message if logged in, else display login/register -->
+          {% if request.user.is_authenticated %}
+            <p class="text-xl">Hello, {{request.user}}</p>
+            <!-- <a class="url" href="{% url 'store:contact' %}">Contact</a> -->
+            <a class="url" href="{% url 'store:cart' %}">My cart</a>
+            <a class="url" href="{% url 'store:logout' %}">Logout</a>
+          {% else %}
+            <a class="url" href="{% url 'store:login' %}">Login</a>
+            <a class="url" href="{% url 'store:register' %}">Register</a>
+          {% endif %} 
+          <a class="url" href="{% url 'store:index' %}">Home</a>
+        </div>
+      </header>
+
+    <!-- Default colors for background -->
+    <body class="bg-primary"></body>
+
+    <!-- Dolphin buddy for explaining website details as well as llm querying -->
+     <footer>
+        <div class="bg-red-400 fixed left-0 bottom-0 w-full z-10">
+            <form method="POST" action="/query">
+                <input type="text" name="textfield">
+                <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
+            </form>
+        </div>
+     </footer>
 </html>

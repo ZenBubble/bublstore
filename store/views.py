@@ -119,3 +119,6 @@ def remove_cart(request, item_id):
     request.user.cart.items.remove(item)
     return HttpResponseRedirect("/store/cart")
 
+# # llm query
+# def query(request):
+#     return Json
