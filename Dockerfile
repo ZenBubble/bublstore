@@ -16,6 +16,11 @@ RUN pip install --upgrade pip
  
 # Copy the requirements file first (better caching)
 COPY requirements.txt /app/
+
+# install psycopg2 dependenceis
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
  
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
