@@ -13,8 +13,6 @@ urlpatterns = [
     path("register", views.register, name="register"),
     # /store/cart
     path("cart", views.cart, name="cart"),
-    # /store/contact
-    path("contact", views.contact, name="contact"),
 
     # BELOW ARE FUNCTIONAL VIEWS, WHICH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
 
@@ -26,4 +24,7 @@ urlpatterns = [
 
     # remove item from cart
     path("remove_cart/<int:item_id>", views.remove_cart, name="remove_cart"),
+
+    # llm query
+    path("query", views.query, name="query"),
 ]

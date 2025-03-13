@@ -12,7 +12,6 @@
           <!-- display welcome message if logged in, else display login/register -->
           {% if request.user.is_authenticated %}
             <p class="text-xl">Hello, {{request.user}}</p>
-            <!-- <a class="url" href="{% url 'store:contact' %}">Contact</a> -->
             <a class="url" href="{% url 'store:cart' %}">My cart</a>
             <a class="url" href="{% url 'store:logout' %}">Logout</a>
           {% else %}
@@ -29,10 +28,36 @@
     <!-- Dolphin buddy for explaining website details as well as llm querying -->
      <footer>
         <div class="bg-red-400 fixed left-0 bottom-0 w-full z-10">
-            <form method="POST" action="/query">
-                <input type="text" name="textfield">
+          <div id="response">reponse goes here</div>
+            <form method="POST" id="input-form">
+                {% csrf_token %}
+                <input type="text" name="input" id="input" required>
                 <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
             </form>
+
+            
+
+            <!-- Code for preventing redirects with llm entry -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js" 
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+            crossorigin="anonymous"></script> 
+            <script type="text/javascript"> 
+              $(document).on('submit','#input-form',function(e){ 
+                  e.preventDefault(); 
+                  $.ajax({ 
+                      type:'POST', 
+                      url:'query', 
+                      data: 
+                      { 
+                          input:$("#input").val(), 
+                          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() 
+                      }, 
+                      success:function(response){ 
+                          $('#response').html(response);
+                              } 
+                      }) 
+                  }); 
+              </script> 
         </div>
      </footer>
 </html>

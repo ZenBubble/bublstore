@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404,  render
 from django.views import generic
 from django.urls import reverse
+from django.http import HttpResponse
+from ollama import chat
+from ollama import ChatResponse
 
 from .models import *
 from .forms import *
@@ -94,12 +97,6 @@ def cart(request):
     }
     return render(request, "store/cart.html", context)
 
-# contact page
-def contact(request):
-    context = {
-    }
-    return render(request, "store/contact.html", context)
-
 ## BELOW ARE FUNCTIONAL VIEWS, WHCIH MEANS THEY SHOULD NOT BE DIRECTLY ACCESSED BY THE USER
 
 # Logout functionality
@@ -119,6 +116,14 @@ def remove_cart(request, item_id):
     request.user.cart.items.remove(item)
     return HttpResponseRedirect("/store/cart")
 
-# # llm query
-# def query(request):
-#     return Json
+# llm query
+def query(request):
+    if request.method == 'POST': 
+        text=request.POST.get("input")
+        response: ChatResponse = chat(model='deepseek-r1:1.5b', messages=[
+        {
+            'role': 'user',
+            'content': text,
+        },
+        ])
+    return HttpResponse(response.message.content)
