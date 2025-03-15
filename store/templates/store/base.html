@@ -27,37 +27,64 @@
 
     <!-- Dolphin buddy for explaining website details as well as llm querying -->
      <footer>
-        <div class="bg-red-400 fixed left-0 bottom-0 w-full z-10">
-          <div id="response">reponse goes here</div>
-            <form method="POST" id="input-form">
-                {% csrf_token %}
-                <input type="text" name="input" id="input" required>
-                <button name="submit" class="py-5 w-full bg-dark text-white text-xl rounded-md hover:shadow-xl hover:bg-dark/90">Submit</button>
-            </form>
+      <div class="fixed left-0 bottom-0 w-full z-10">
 
-            
+          <form method="POST" id="input-form">
+              {% csrf_token %}
+              <input type="text" name="input" id="input" required>
+              <button id="query" onclick="cooldown()" name="submit" class="py-5 w-20 bg-dark text-white text-xl rounded-md hover:shadow-xl disabled:bg-red-600/10 disabled:cursor-not-allowed hover:bg-dark/90">Submit</button>
+          </form>
 
-            <!-- Code for preventing redirects with llm entry -->
-            <script src="https://code.jquery.com/jquery-3.5.1.js" 
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
-            crossorigin="anonymous"></script> 
-            <script type="text/javascript"> 
-              $(document).on('submit','#input-form',function(e){ 
-                  e.preventDefault(); 
-                  $.ajax({ 
-                      type:'POST', 
-                      url:'query', 
-                      data: 
-                      { 
-                          input:$("#input").val(), 
-                          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() 
-                      }, 
-                      success:function(response){ 
-                          $('#response').html(response);
-                              } 
-                      }) 
-                  }); 
-              </script> 
-        </div>
-     </footer>
+          <div class="relative">
+            <img class="fixed rotate-[20deg] scale-[0.33] -bottom-56 -right-[42rem] z-10" src={% static 'store/images/dolphin.png' %}>
+            <img class="fixed -bottom-96 -right-[18rem] scale-[0.33] transition-all shake" src={% static 'store/images/waves.png' %}>
+            <img class="fixed -bottom-96 -right-[30rem] scale-[0.33] transition-all shake z-20" src={% static 'store/images/waves.png' %}>
+            <div class="bg-black fixed bottom-48 right-24 w-96 h-40 rounded-lg outline outline-blue-800 -outline-offset-[16px]">
+              <p id="response" class="p-6 text-white">WHAT A HORRIBLE NIGHT TO HAVE A CURSE</p> 
+            </div>
+          </div>
+      </div>
+    </footer>
 </html>
+
+<!-- Code for preventing redirects with llm entry -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" 
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+crossorigin="anonymous"></script> 
+<script type="text/javascript"> 
+  $(document).on('submit','#input-form',function(e){ 
+      e.preventDefault(); 
+      $.ajax({ 
+          type:'POST', 
+          url:'query', 
+          data: 
+          { 
+              input:$("#input").val(), 
+              csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() 
+          }, 
+          success:function(response){ 
+              $('#response').html(response);
+                  } 
+          }) 
+      }); 
+</script> 
+
+<!-- Script for llm query cooldown -->
+<script>
+  var x = document.getElementById("query").disabled = false;
+  var cooldown = function(){
+    setTimeout(function(){
+      var x = document.getElementById("query").disabled = true;
+    }, 1); // give some time to allow the query to go through 
+    setTimeout(function(){
+      var x = document.getElementById("query").disabled = false;
+    }, 5000);
+  }
+</script>
+
+<!-- script to randomize waves animation -->
+<script>
+  const time = Math.random() * + 10
+  const img = document.querySelector('.shake');
+  img.style.setProperty('--animation-time', time +'s');
+</script>
