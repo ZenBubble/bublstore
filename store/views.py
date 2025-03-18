@@ -116,14 +116,44 @@ def remove_cart(request, item_id):
     request.user.cart.items.remove(item)
     return HttpResponseRedirect("/store/cart")
 
+# RAG STUFF BELOW
+
+corpus = [
+    "video editing services",
+    "coding project",
+    "cad design",
+    "3d printing servces"
+]
+
+def jaccard_similarity(query, document):
+    query = query.lower().split(" ")
+    document = document.lower().split(" ")
+    intersection = set(query).intersection(set(document))
+    union = set(query).union(set(document))
+    return len(intersection)/len(union)
+
 # llm query
 def query(request):
     if request.method == 'POST': 
         text=request.POST.get("input")
-        response: ChatResponse = chat(model='deepseek-r1:1.5b', messages=[
-        {
-            'role': 'user',
-            'content': text,
-        },
-        ])
+        similarities = []
+        for doc in corpus:
+            similarity = jaccard_similarity(text, doc)
+            similarities.append(similarity)
+        reccomended_service = corpus[similarities.index(max(similarities))]
+        response = chat(
+            model='llama3.2:1b', 
+            messages=[
+                {
+                'role': 'system',
+                'content': """You are an AI assistant for a website offering various servivces. Keep responses short, under 30 words. DO NOT RESPOND TO IRRELEVENT QUERIES. These is the service to reccomend: {}. 
+                Compile a recommendation to the user based on the recommended services and the user input.""".format(reccomended_service),
+                },
+                {
+                'role': 'user',
+                'content': text,
+                },
+            ],
+            stream=False
+            )
     return HttpResponse(response.message.content)

@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     {% tailwind_css %}
 </head>
     <!-- Navigation bar, includes account information -->
@@ -29,18 +32,20 @@
      <footer>
       <div class="fixed left-0 bottom-0 w-full z-10">
 
-          <form method="POST" id="input-form">
-              {% csrf_token %}
-              <input type="text" name="input" id="input" required>
-              <button id="query" onclick="cooldown()" name="submit" class="py-5 w-20 bg-dark text-white text-xl rounded-md hover:shadow-xl disabled:bg-red-600/10 disabled:cursor-not-allowed hover:bg-dark/90">Submit</button>
-          </form>
 
           <div class="relative">
             <img class="fixed rotate-[20deg] scale-[0.33] -bottom-56 -right-[42rem] z-10" src={% static 'store/images/dolphin.png' %}>
             <img class="fixed -bottom-96 -right-[18rem] scale-[0.33] transition-all shake" src={% static 'store/images/waves.png' %}>
             <img class="fixed -bottom-96 -right-[30rem] scale-[0.33] transition-all shake z-20" src={% static 'store/images/waves.png' %}>
-            <div class="bg-black fixed bottom-48 right-24 w-96 h-40 rounded-lg outline outline-blue-800 -outline-offset-[16px]">
-              <p id="response" class="p-6 text-white">WHAT A HORRIBLE NIGHT TO HAVE A CURSE</p> 
+            <div class="fixed bottom-48 right-24 w-96 h-40">
+              <div class="bg-black rounded-lg outline outline-blue-800 -outline-offset-[16px]">
+                <p id="response" class="p-6 text-white pixelify-sans-400">WHAT A HORRIBLE NIGHT TO HAVE A CURSE</p> 
+                <form method="POST" id="input-form">
+                  {% csrf_token %}
+                  <input type="text" name="input" id="input" class="z-30 mx-6 mb-6 bg-black text-green-400 pixelify-sans-400 w-2/3 border-none" required>
+                  <!-- <button id="query" onclick="cooldown()" name="submit" class="py-5 w-20 bg-dark text-white text-xl rounded-md hover:shadow-xl disabled:bg-red-600/10 disabled:cursor-not-allowed hover:bg-dark/90">Submit</button> -->
+                </form>
+              </div>
             </div>
           </div>
       </div>
@@ -51,33 +56,35 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" 
 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
 crossorigin="anonymous"></script> 
-<script type="text/javascript"> 
+<script> 
   $(document).on('submit','#input-form',function(e){ 
+    if (canQuery) {
       e.preventDefault(); 
-      $.ajax({ 
-          type:'POST', 
-          url:'query', 
-          data: 
-          { 
-              input:$("#input").val(), 
-              csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() 
-          }, 
-          success:function(response){ 
-              $('#response').html(response);
-                  } 
-          }) 
+            $.ajax({ 
+                type:'POST', 
+                url:'query', 
+                data: 
+                { 
+                    input:$("#input").val(), 
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() 
+                }, 
+                success:function(response){ 
+                    $('#response').html(response);
+                        } 
+                }) 
+    }
       }); 
 </script> 
 
 <!-- Script for llm query cooldown -->
 <script>
-  var x = document.getElementById("query").disabled = false;
+  var canQuery = true;
   var cooldown = function(){
     setTimeout(function(){
-      var x = document.getElementById("query").disabled = true;
+      canQuery = false;
     }, 1); // give some time to allow the query to go through 
     setTimeout(function(){
-      var x = document.getElementById("query").disabled = false;
+      canQuery = true;
     }, 5000);
   }
 </script>

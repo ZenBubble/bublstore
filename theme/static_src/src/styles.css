@@ -62,4 +62,12 @@
         100% { transform: translate(10px, -10px) scale(0.33); }
       }
 
+      .pixelify-sans-400 {
+        font-family: "Pixelify Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+
 }
