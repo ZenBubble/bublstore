@@ -9,7 +9,7 @@ Full stack project made for a mock website offering various services. Self-hoste
 - 💚 Basic front end made in html + tailwind. Not really the main focus of this project, but useful to learn.
 - 💛 All in one dockerized version to learn docker.
 - 💛 Automated tests using Django tests as well as GitHub actions. This is for learning CI/CD and program testing.
-- 💛 Clippy type mascot that details what each page is and how it was implemented. Since its 2025, I'll also build a RAG using Ollama + local deepseek for simple user queuries like "do you offer ___." (NOT A CHATGPT WRAPPER)
+- 💛 Clippy type mascot that details what each page is and how it was implemented. Since its 2025, I'll also build a RAG using Ollama + local deepseek for simple user queuries like "do you offer ___." 
 - ❤️ Custom user authentication (password encryption) and home server hosting. This is to explore more of information encryption and web protocols.
 
 ## Installation/development
