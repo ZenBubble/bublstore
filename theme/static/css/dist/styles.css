@@ -902,18 +902,6 @@ a {
   top: 0px;
 }
 
-.top-48 {
-  top: 12rem;
-}
-
-.right-0 {
-  right: 0px;
-}
-
-.right-16 {
-  right: 4rem;
-}
-
 .z-0 {
   z-index: 0;
 }
@@ -926,12 +914,12 @@ a {
   z-index: 20;
 }
 
-.z-50 {
-  z-index: 50;
-}
-
 .z-30 {
   z-index: 30;
+}
+
+.z-50 {
+  z-index: 50;
 }
 
 .col-span-1 {
@@ -1012,6 +1000,10 @@ a {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -1062,6 +1054,22 @@ a {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[85\%\] {
+  width: 85%;
+}
+
+.w-\[87\.5\%\] {
+  width: 87.5%;
 }
 
 .origin-right {
@@ -1152,13 +1160,12 @@ a {
   border-width: 1px;
 }
 
-.border-none {
-  border-style: none;
+.border-0 {
+  border-width: 0px;
 }
 
-.border-green-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(74 222 128 / var(--tw-border-opacity, 1));
+.border-none {
+  border-style: none;
 }
 
 .border-black {
@@ -1214,10 +1221,6 @@ a {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-12 {
-  padding: 3rem;
 }
 
 .px-28 {
@@ -1341,6 +1344,11 @@ a {
   color: rgb(14 28 54 / var(--tw-text-opacity, 1));
 }
 
+.text-green-400 {
+  --tw-text-opacity: 1;
+  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
+}
+
 .text-purple-800 {
   --tw-text-opacity: 1;
   color: rgb(107 33 168 / var(--tw-text-opacity, 1));
@@ -1349,11 +1357,6 @@ a {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.text-green-400 {
-  --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
 }
 
 .opacity-50 {
@@ -1378,6 +1381,17 @@ a {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-none {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-black {
+  --tw-shadow-color: #000;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1397,6 +1411,10 @@ a {
 
 .outline-blue-800 {
   outline-color: #1e40af;
+}
+
+.outline-black {
+  outline-color: #000;
 }
 
 .drop-shadow-lg {
@@ -1443,6 +1461,10 @@ a {
 .hover\:drop-shadow-lg:hover {
   --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.disabled\:hidden:disabled {
+  display: none;
 }
 
 .disabled\:cursor-not-allowed:disabled {

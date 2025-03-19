@@ -119,10 +119,10 @@ def remove_cart(request, item_id):
 # RAG STUFF BELOW
 
 corpus = [
-    "video editing services",
-    "coding project",
-    "cad design",
-    "3d printing servces"
+    "video editing services: In my freetime, I make and upload YouTube videos. I've managed to accumulate 1K+ subscribers, so if you would like to see a sample, check out my channel @ZenBubbleYT on YouTube (not the skincare brand, which may I add stole my name.) I can edit any type of video, but I'm most proficient in video essays.",
+    "coding project: As you can see from this beautiful website around you, I know how to code. I can offer anything from websites to video games, but I do have more experience in the latter (4 games and counting.)",
+    "cad design: I also enjoy robotics and using computers for creativity. In fact, I'm a part of UBC Subbots, a design team for AUVs. I can design anything from PCBs to enclosures for robots (with preference to the latter because robots are sick as hell.)",
+    "3d printing servces: Apart from using CAD for functional purposes, I also enjoy making creative things using computers and printing them out on my Ender 3 which is on its last legs. I particularly enjoy creating cosplay props."
 ]
 
 def jaccard_similarity(query, document):
@@ -146,8 +146,9 @@ def query(request):
             messages=[
                 {
                 'role': 'system',
-                'content': """You are an AI assistant for a website offering various servivces. Keep responses short, under 30 words. DO NOT RESPOND TO IRRELEVENT QUERIES. These is the service to reccomend: {}. 
-                Compile a recommendation to the user based on the recommended services and the user input.""".format(reccomended_service),
+                'content': """You are an AI assistant for a website store offering various freelancing services. Keep responses short, under 30 words. DO NOT RESPOND TO IRRELEVENT QUERIES NOT PERTAINING TO THE SHOP. These is the service to recommend with some talking points: {}. 
+                Compile a recommendation to the user based on the recommended services and the user input. Only provide a reccomendation on the service and nothing else. Do not provide assistance for anything other than a recommendation. Only respond with a string. 
+                Stick to what is explicitly detailed in the service description.""".format(reccomended_service),
                 },
                 {
                 'role': 'user',
